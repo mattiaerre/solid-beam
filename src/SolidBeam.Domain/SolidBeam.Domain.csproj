@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BasicRule.cs" />
     <Compile Include="Manufacturers\Audi.cs" />
+    <Compile Include="Manufacturers\Ferrari.cs" />
     <Compile Include="Types\Car.cs" />
     <Compile Include="IRatingEngine.cs" />
     <Compile Include="IRule.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Manufacturers\Mercedes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingEngine.cs" />
+    <Compile Include="Types\Supercar.cs" />
     <Compile Include="Types\Van.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="VehicleFactory.cs" />

@@ -1,4 +1,4 @@
-﻿namespace SolidBeam.Domain
+﻿namespace SolidBeam.Domain.Manufacturers
 {
     public enum VehicleManufacturer
     {

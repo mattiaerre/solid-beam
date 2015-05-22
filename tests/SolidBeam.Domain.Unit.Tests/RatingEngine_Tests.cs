@@ -1,16 +1,36 @@
 ﻿using NUnit.Framework;
+using SolidBeam.Domain.Manufacturers;
+using SolidBeam.Domain.Types;
+using System.Collections.Generic;
 
 namespace SolidBeam.Domain.Unit.Tests
 {
     [TestFixture]
     public class RatingEngine_Tests
     {
+        // todo: enum into interfaces
+        // todo: inject the rule into engine
+        // todo: VehicleType repository
+        // todo: VehicleManufacturer repository
+        // todo: Vehicle factory
+
+        // todo: RatingEngine has got IVehicleFactory and IRule as dependencies
+        // todo: VehicleFactory has got IVehicleTypeRepository and IVehicleManufacturer as dependencies
+        // todo: _factory.Make(type, manufacturer) ==> IVehicle
+        // todo: _rule.CalculatePremium(vehicle)
+
         private IRatingEngine _engine;
 
         [SetUp]
         public void Given_A_RatingEngine()
         {
-            _engine = new RatingEngine();
+            // info: a container can resolve all these dependencies
+            var types = new List<IType> { new Car(), new Van() };
+            var manufacturers = new List<IManufacturer> { new Audi(), new Mercedes() };
+            var vehicleFactory = new VehicleFactory(types, manufacturers);
+            var rule = new BasicRule();
+
+            _engine = new RatingEngine(vehicleFactory, rule);
         }
 
         // info: not sure if Quote is the right verb to use here

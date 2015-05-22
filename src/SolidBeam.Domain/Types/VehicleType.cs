@@ -1,4 +1,4 @@
-﻿namespace SolidBeam.Domain
+﻿namespace SolidBeam.Domain.Types
 {
     public enum VehicleType
     {

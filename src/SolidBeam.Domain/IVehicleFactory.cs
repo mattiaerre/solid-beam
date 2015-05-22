@@ -5,6 +5,6 @@ namespace SolidBeam.Domain
 {
     public interface IVehicleFactory
     {
-        IVehicle Make(VehicleType vehicleType, VehicleManufacturer vehicleManufacturer);
+        IVehicle Make(IType type, IManufacturer manufacturer);
     }
 }

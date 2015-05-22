@@ -18,8 +18,8 @@ namespace SolidBeam.Domain.Unit.Tests
         [Test]
         public void It_Should_Have_A_Type_And_A_Manufacturer()
         {
-            Assert.AreEqual(typeof(VehicleType), _vehicle.Type.GetType());
-            Assert.AreEqual(typeof(VehicleManufacturer), _vehicle.Manufacturer.GetType());
+            Assert.AreEqual(typeof(Car), _vehicle.Type.GetType());
+            Assert.AreEqual(typeof(Audi), _vehicle.Manufacturer.GetType());
         }
     }
 }

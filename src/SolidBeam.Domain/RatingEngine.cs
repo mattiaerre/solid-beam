@@ -14,9 +14,9 @@ namespace SolidBeam.Domain
             _rule = rule;
         }
 
-        public decimal Quote(VehicleType vehicleType, VehicleManufacturer vehicleManufacturer)
+        public decimal Quote(IType type, IManufacturer manufacturer)
         {
-            var vehicle = _vehicleFactory.Make(vehicleType, vehicleManufacturer);
+            var vehicle = _vehicleFactory.Make(type, manufacturer);
             return _rule.ComputePremium(vehicle);
         }
     }

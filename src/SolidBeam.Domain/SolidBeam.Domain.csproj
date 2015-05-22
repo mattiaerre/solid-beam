@@ -53,8 +53,6 @@
     <Compile Include="RatingEngine.cs" />
     <Compile Include="Types\Van.cs" />
     <Compile Include="Vehicle.cs" />
-    <Compile Include="Manufacturers\VehicleManufacturer.cs" />
-    <Compile Include="Types\VehicleType.cs" />
     <Compile Include="VehicleFactory.cs" />
   </ItemGroup>
   <ItemGroup />

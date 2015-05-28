@@ -5,6 +5,6 @@ namespace SolidBeam.Domain
 {
     public interface IRatingEngine
     {
-        decimal Quote(IType vehicleType, IManufacturer vehicleManufacturer);
+        decimal Quote(IType type, IManufacturer manufacturer);
     }
 }

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rating engine</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
+    <script src="rating.controller.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <!-- see: https://github.com/johnpapa/angular-styleguide -->
+</head>
+<body>
+    <div div class="container" ng-app="rating-engine" ng-controller="RatingController as vm">
+        <div class="row">
+            <div class="col-xs-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                types: <select ng-model="vm.type" ng-options="type for type in vm.data.types"></select>
+                manufacturer: <select ng-model="vm.manufacturer" ng-options="manufacturer for manufacturer in vm.data.manufacturers"></select>
+                <button ng-click="vm.quote()">quote</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">{{vm.premium}}</div>
+        </div>
+    </div>
+</body>
+</html>

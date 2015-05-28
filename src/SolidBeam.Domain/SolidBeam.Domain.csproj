@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BasicRule.cs" />
     <Compile Include="Manufacturers\Audi.cs" />
+    <Compile Include="Manufacturers\Fiat.cs" />
     <Compile Include="Manufacturers\Ferrari.cs" />
     <Compile Include="Types\Car.cs" />
     <Compile Include="IRatingEngine.cs" />

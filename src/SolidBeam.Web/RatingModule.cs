@@ -14,12 +14,20 @@ namespace SolidBeam.Web
     {
         public RatingModule(IRatingModelFactory ratingModelFactory, IRatingEngine ratingEngine)
         {
+            var jsonSerializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            };
+
             Get["/"] = parameters => Response.AsRedirect("/Content/app/rating/rating.html");
 
-            var model = ratingModelFactory.Make();
-            Get["/api/v0/rating/model"] = _ => JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver(), });
+            Get["/api/v0/rating/model"] = _ =>
+            {
+                var model = ratingModelFactory.Make();
+                return JsonConvert.SerializeObject(model, Formatting.Indented, jsonSerializerSettings);
+            };
 
-            Post["/api/v0/rating/quote"] = ctx =>
+            Post["/api/v0/rating/quote"] = _ =>
             {
                 var data = this.Bind<PostedData>();
                 var json = JObject.Parse(data.payload);
@@ -28,7 +36,7 @@ namespace SolidBeam.Web
                 var manufacturerHandle = Activator.CreateInstance("SolidBeam.Domain", string.Format("SolidBeam.Domain.Manufacturers.{0}", json["manufacturer"].Value<string>()));
 
                 var quote = ratingEngine.Quote((IType)typeHandle.Unwrap(), (IManufacturer)manufacturerHandle.Unwrap());
-                return JsonConvert.SerializeObject(new { quote });
+                return JsonConvert.SerializeObject(new { quote }, Formatting.Indented, jsonSerializerSettings);
             };
         }
     }

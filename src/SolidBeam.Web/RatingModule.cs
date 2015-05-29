@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Nancy;
+﻿using Nancy;
 using Nancy.ModelBinding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -8,7 +6,8 @@ using Newtonsoft.Json.Serialization;
 using SolidBeam.Domain;
 using SolidBeam.Domain.Manufacturers;
 using SolidBeam.Domain.Types;
-using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SolidBeam.Web
 {

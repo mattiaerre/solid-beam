@@ -5,18 +5,14 @@
 
     app.controller('RatingController', RatingController);
 
-    function RatingController($http, $log) {
+    function RatingController($http) {
         var vm = this;
-
         vm.$http = $http;
-        vm.$log = $log;
-
         vm.init();
     };
 
     RatingController.prototype.init = function () {
         var vm = this;
-
         vm.$http.get('/api/v0/rating/model').success(function (data, status, headers, config) {
             vm.data = data;
             vm.type = vm.data.types[0];
@@ -28,10 +24,8 @@
 
     RatingController.prototype.quote = function () {
         var vm = this;
-
         var payload = JSON.stringify({ type: vm.type, manufacturer: vm.manufacturer });
         vm.$http.post('/api/v0/rating/quote', { payload: payload }).success(function (data, status, headers, config) {
-            vm.$log.info(data);
             vm.premium = data.quote;
         }).error(function (data, status, headers, config) {
             // todo: !!!

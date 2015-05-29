@@ -1,4 +1,6 @@
-﻿using Nancy;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Nancy;
 using Nancy.ModelBinding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -12,7 +14,7 @@ namespace SolidBeam.Web
 {
     public class RatingModule : NancyModule
     {
-        public RatingModule(IRatingModelFactory ratingModelFactory, IRatingEngine ratingEngine)
+        public RatingModule(IRatingModelFactory ratingModelFactory, IEnumerable<IType> types, IEnumerable<IManufacturer> manufacturers, IRatingEngine ratingEngine)
         {
             var jsonSerializerSettings = new JsonSerializerSettings
             {
@@ -32,10 +34,10 @@ namespace SolidBeam.Web
                 var data = this.Bind<PostedData>();
                 var json = JObject.Parse(data.payload);
 
-                var typeHandle = Activator.CreateInstance("SolidBeam.Domain", string.Format("SolidBeam.Domain.Types.{0}", json["type"].Value<string>()));
-                var manufacturerHandle = Activator.CreateInstance("SolidBeam.Domain", string.Format("SolidBeam.Domain.Manufacturers.{0}", json["manufacturer"].Value<string>()));
+                var type = types.FirstOrDefault(e => e.GetType().Name == json["type"].Value<string>());
+                var manufacturer = manufacturers.FirstOrDefault(e => e.GetType().Name == json["manufacturer"].Value<string>());
 
-                var quote = ratingEngine.Quote((IType)typeHandle.Unwrap(), (IManufacturer)manufacturerHandle.Unwrap());
+                var quote = ratingEngine.Quote(type, manufacturer);
                 return JsonConvert.SerializeObject(new { quote }, Formatting.Indented, jsonSerializerSettings);
             };
         }

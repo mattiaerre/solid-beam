@@ -7,7 +7,7 @@ namespace SolidBeam.Web
     {
         public static IEnumerable<string> ToTypeNames(this IEnumerable<object> collection)
         {
-            return collection.Select(item => item.GetType().Name);
+            return collection.Select(e => e.GetType().Name);
         }
     }
 }
